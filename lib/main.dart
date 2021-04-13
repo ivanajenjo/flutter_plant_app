@@ -18,19 +18,23 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text('RiegApp'),
-          ),
-          body: GridView.count(
-            crossAxisCount: 2,
-            children: [
-              PlantCard(),
-              PlantCard(),
-              PlantCard(),
-              PlantCard(),
-            ],
-          )),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('RiegApp'),
+        ),
+        body: GridView.count(
+          crossAxisCount: 2,
+          children: [
+            PlantCard(),
+            PlantCard(),
+            PlantCard(),
+            PlantCard(),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.camera),
+        ),
+      ),
     );
   }
 }

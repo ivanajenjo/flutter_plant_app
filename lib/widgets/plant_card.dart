@@ -5,8 +5,18 @@ class PlantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('PlantCard')),
+    return Card(
+      child: Column(
+        children: [
+          ListTile(
+            leading: Icon(Icons.arrow_drop_down_circle),
+            title: Text('Nombre de la planta'),
+          ),
+          Text('Card'),
+          Image.asset('assets/images/plant.jpg')
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
     );
   }
 }
