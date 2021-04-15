@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'widgets/plant_card.dart';
+import 'widgets/appbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,21 +19,19 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('RiegApp'),
-        ),
+        appBar: buildAppBar(),
         body: GridView.count(
           crossAxisCount: 2,
           children: [
-            PlantCard(),
-            PlantCard(),
-            PlantCard(),
-            PlantCard(),
+            PlantCard('assets/images/plant.jpg'),
+            PlantCard('assets/images/plant.jpg'),
+            PlantCard('assets/images/plant.jpg'),
+            PlantCard('assets/images/plant.jpg'),
           ],
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.camera),
+          backgroundColor: kPrimaryColorDark,
         ),
       ),
     );
