@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_plant_app/screens/plant_screen.dart';
+import 'package:flutter_plant_app/screens/add_plant_screen.dart';
 
 class PlantCard extends StatelessWidget {
   final String imagePath;
@@ -10,7 +10,7 @@ class PlantCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PlantScreen()));
+            context, MaterialPageRoute(builder: (context) => AddPlantScreen()));
       },
       child: Container(
         child: Card(
