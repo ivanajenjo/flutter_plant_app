@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: BuildAppBar(),
       body: GridView.count(
         crossAxisCount: 2,
         children: [

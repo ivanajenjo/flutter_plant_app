@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-AppBar buildAppBar() {
+AppBar BuildAppBar() {
   return AppBar(
     centerTitle: true,
     title: Text('RiegApp'),
