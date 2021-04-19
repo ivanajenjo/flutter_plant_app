@@ -7,13 +7,15 @@ final String tablaPlantas = 'plantas';
 final String columnId = '_id';
 final String columnNombre = 'nombre';
 final String columnUbicacion = 'ubicacion';
-final String columndiasRegado = 'diasRegado';
+final String columnDiasRegado = 'diasRegado';
+final String columnUltimoRegado = 'ultimoRegado';
 
 class Plant {
   int id;
   String nombre;
   String ubicacion;
   int diasRegado;
+  DateTime ultimoRegado;
 
   Plant();
 
@@ -21,14 +23,16 @@ class Plant {
     id = map[columnId];
     nombre = map[columnNombre];
     ubicacion = map[columnUbicacion];
-    diasRegado = map[columndiasRegado];
+    diasRegado = map[columnDiasRegado];
+    ultimoRegado = map[columnUltimoRegado];
   }
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       'nombre': nombre,
       'ubicacion': ubicacion,
-      'diasRegado': diasRegado
+      'diasRegado': diasRegado,
+      'ultimoRegado': ultimoRegado
     };
     if (id != null) {
       map[columnId] = id;
@@ -38,7 +42,7 @@ class Plant {
 
   @override
   String toString() {
-    return 'nombre: $nombre, ubicacion: $ubicacion, diasRegado: $diasRegado';
+    return 'nombre: $nombre, ubicacion: $ubicacion, diasRegado: $diasRegado, ultimoRegado: $ultimoRegado';
   }
 }
 
@@ -47,7 +51,7 @@ class DatabaseHelper {
   // This is the actual database filename that is saved in the docs directory.
   static final _databaseName = "Plants.db";
   // Increment this version when you need to change the schema.
-  static final _databaseVersion = 1;
+  static final _databaseVersion = 3;
 
   // Make this a singleton class.
   DatabaseHelper._privateConstructor();
@@ -78,7 +82,8 @@ class DatabaseHelper {
                 $columnId INTEGER PRIMARY KEY,
                 $columnNombre TEXT NOT NULL,
                 $columnUbicacion TEXT NOT NULL,
-                $columndiasRegado INTEGER NOT NULL
+                $columnDiasRegado INTEGER NOT NULL,
+                $columnUltimoRegado DATETIME
               )
               ''');
   }
@@ -94,7 +99,13 @@ class DatabaseHelper {
   Future<Plant> queryPlant(int id) async {
     Database db = await database;
     List<Map> maps = await db.query(tablaPlantas,
-        columns: [columnId, columnNombre, columnUbicacion, columndiasRegado],
+        columns: [
+          columnId,
+          columnNombre,
+          columnUbicacion,
+          columnDiasRegado,
+          columnUltimoRegado
+        ],
         where: '$columnId = ?',
         whereArgs: [id]);
     if (maps.length > 0) {

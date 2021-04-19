@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_plant_app/constants.dart';
 import 'package:flutter_plant_app/widgets/appbar.dart';
 import 'package:flutter_plant_app/models/plant.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddPlantScreen extends StatefulWidget {
   const AddPlantScreen({Key key}) : super(key: key);
@@ -11,9 +14,11 @@ class AddPlantScreen extends StatefulWidget {
 }
 
 class _AddPlantScreenState extends State<AddPlantScreen> {
-  TextEditingController nameController = new TextEditingController();
-  TextEditingController ubicacionController = new TextEditingController();
-  TextEditingController diasController = new TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController ubicacionController = TextEditingController();
+  TextEditingController diasController = TextEditingController();
+  File _image;
+  final _picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +31,23 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                 diasController.text);
           },
         ),
-        appBar: BuildAppBar(),
+        appBar: buildAppBar(),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              new ListTile(
+              ListTile(
                 leading: Icon(Icons.nature_people_outlined),
-                title: new TextField(
+                title: TextField(
                   controller: nameController,
-                  decoration: new InputDecoration(
+                  decoration: InputDecoration(
                       hintText: 'Nombre de la planta',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20))),
                 ),
               ),
-              new ListTile(
+              ListTile(
                 leading: Icon(Icons.location_on_outlined),
-                title: new TextField(
+                title: TextField(
                   controller: ubicacionController,
                   decoration: InputDecoration(
                       hintText: 'Ubicación',
@@ -50,35 +55,82 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                           borderRadius: BorderRadius.circular(20))),
                 ),
               ),
-              new ListTile(
+              ListTile(
                 leading: Icon(Icons.alarm),
-                title: new TextField(
+                title: TextField(
                   controller: diasController,
                   keyboardType: TextInputType.number,
-                  decoration: new InputDecoration(
+                  decoration: InputDecoration(
                       suffixText: 'Dias',
                       hintText: 'Frecuencia de regado',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20))),
                 ),
               ),
-              new ElevatedButton(
+              ElevatedButton(
                 onPressed: _read,
                 child: Text('Añadir Foto'),
               ),
-              new ElevatedButton(
+              ElevatedButton(
                 onPressed: _readAll,
                 child: Text('Get All Plants'),
               ),
-              new ElevatedButton(
+              ElevatedButton(
                 onPressed: _deleteAll,
                 child: Text('Delete All Plants'),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Ink(
+                    decoration: ShapeDecoration(
+                      shape: CircleBorder(),
+                      color: kPrimaryColor,
+                    ),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.photo_library_outlined,
+                          color: Colors.white,
+                        ),
+                        onPressed: _imgFromGallery),
+                  ),
+                  Ink(
+                    decoration: ShapeDecoration(
+                      color: kPrimaryColor,
+                      shape: CircleBorder(),
+                    ),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.photo_camera_outlined,
+                          color: Colors.white,
+                        ),
+                        onPressed: _imgFromCamera),
+                  ),
+                ],
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  _imgFromCamera() async {
+    final pickedFile =
+        await _picker.getImage(source: ImageSource.camera, imageQuality: 50);
+
+    setState(() {
+      _image = File(pickedFile.path);
+    });
+  }
+
+  _imgFromGallery() async {
+    final pickedFile =
+        await _picker.getImage(source: ImageSource.gallery, imageQuality: 50);
+
+    setState(() {
+      _image = File(pickedFile.path);
+    });
   }
 }
 
@@ -92,6 +144,7 @@ _save(String nombre, String ubicacion, String dias) async {
   print('Inserted row: $id');
 }
 
+//No borrar puede sernos util más tarde
 _read() async {
   DatabaseHelper helper = DatabaseHelper.instance;
   int rowId = 1;

@@ -4,15 +4,20 @@ import 'package:flutter_plant_app/screens/add_plant_screen.dart';
 import 'package:flutter_plant_app/widgets/appbar.dart';
 import 'package:flutter_plant_app/widgets/plant_card.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({
     Key key,
   }) : super(key: key);
 
   @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildAppBar(),
+      appBar: buildAppBar(),
       body: GridView.count(
         crossAxisCount: 2,
         children: [
