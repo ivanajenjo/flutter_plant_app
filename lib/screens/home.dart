@@ -28,7 +28,16 @@ class _HomeState extends State<Home> {
             MaterialPageRoute(
               builder: (context) => AddPlantScreen(),
             ),
-          ).then((value) => setState(() {}));
+          ).then(
+            (value) => setState(
+              () {
+                final snackBar = SnackBar(
+                  content: Text('Nueva Planta añadida'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+            ),
+          );
         },
       ),
     );
