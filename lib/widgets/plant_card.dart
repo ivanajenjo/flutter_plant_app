@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/screens/add_plant_screen.dart';
 
 class PlantCard extends StatelessWidget {
   final String imagePath;
-  const PlantCard(this.imagePath);
+  const PlantCard(this.imagePath, Plant plant);
 
   @override
   Widget build(BuildContext context) {

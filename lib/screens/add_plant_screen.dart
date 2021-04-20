@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_plant_app/constants.dart';
+import 'package:flutter_plant_app/utils/database_helper.dart';
+import 'package:flutter_plant_app/utils/utility.dart';
 import 'package:flutter_plant_app/widgets/appbar.dart';
 import 'package:flutter_plant_app/models/plant.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,7 +30,8 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
           child: Icon(Icons.arrow_forward),
           onPressed: () {
             _save(nameController.text, ubicacionController.text,
-                diasController.text);
+                diasController.text, _image);
+            Navigator.pop(context);
           },
         ),
         appBar: buildAppBar(),
@@ -66,10 +69,6 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20))),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: _read,
-                child: Text('Añadir Foto'),
               ),
               ElevatedButton(
                 onPressed: _readAll,
@@ -120,7 +119,9 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
         await _picker.getImage(source: ImageSource.camera, imageQuality: 50);
 
     setState(() {
-      _image = File(pickedFile.path);
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
     });
   }
 
@@ -129,16 +130,19 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
         await _picker.getImage(source: ImageSource.gallery, imageQuality: 50);
 
     setState(() {
-      _image = File(pickedFile.path);
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
     });
   }
 }
 
-_save(String nombre, String ubicacion, String dias) async {
+_save(String nombre, String ubicacion, String dias, File image) async {
   Plant plant = Plant();
   plant.nombre = nombre;
   plant.diasRegado = int.parse(dias);
   plant.ubicacion = ubicacion;
+  plant.photoName = Utility.base64String(image.readAsBytesSync());
   DatabaseHelper helper = DatabaseHelper.instance;
   int id = await helper.insert(plant);
   print('Inserted row: $id');
