@@ -13,10 +13,12 @@ class PlantCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailPlantScreen()));
+            MaterialPageRoute(builder: (context) => DetailPlantScreen(plant)));
       },
-      child: Container(
-        child: Utility.imageFromBase64String(plant.photoName),
+      child: Card(
+        child: Container(
+          child: Utility.imageFromBase64String(plant.photoName),
+        ),
       ),
     );
   }
