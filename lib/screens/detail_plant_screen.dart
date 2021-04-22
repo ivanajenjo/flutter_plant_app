@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_plant_app/constants.dart';
 import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
 import 'package:flutter_plant_app/widgets/appbar.dart';
@@ -15,7 +16,26 @@ class DetailPlantScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Utility.imageFromBase64String(plant.photoName),
+            Spacer(
+              flex: 1,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 50.0,
+                      spreadRadius: 10.0,
+                    )
+                  ]),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Utility.imageFromBase64String(plant.photoName),
+              ),
+            ),
+            Spacer(
+              flex: 2,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -29,6 +49,9 @@ class DetailPlantScreen extends StatelessWidget {
                 ),
               ],
             ),
+            Spacer(
+              flex: 2,
+            )
           ],
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'add_plant_screen.dart';
 import '../widgets/main_body.dart';
 import '../widgets/appbar.dart';
-import '../widgets/plant_card.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -18,7 +17,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: newBody(),
+      body: NewBody(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         //backgroundColor: kPrimaryColorDark,
