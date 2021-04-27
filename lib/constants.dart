@@ -27,6 +27,7 @@ ThemeData buildThemeData(BuildContext context) {
         FloatingActionButtonThemeData(backgroundColor: kPrimaryColor),
     scaffoldBackgroundColor: kBackgroundColor,
     primaryColor: kPrimaryColor,
+    accentColor: kPrimaryColorDark,
     textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );

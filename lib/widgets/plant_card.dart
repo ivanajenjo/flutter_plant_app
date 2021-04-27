@@ -16,8 +16,11 @@ class PlantCard extends StatelessWidget {
             MaterialPageRoute(builder: (context) => DetailPlantScreen(plant)));
       },
       child: Card(
-        child: Container(
-          child: Utility.imageFromBase64String(plant.photoName),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Container(
+            child: Utility.imageFromBase64String(plant.photoName),
+          ),
         ),
       ),
     );

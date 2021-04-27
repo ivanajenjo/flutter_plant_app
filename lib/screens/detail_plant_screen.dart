@@ -4,14 +4,20 @@ import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
 import 'package:flutter_plant_app/widgets/appbar.dart';
 
-class DetailPlantScreen extends StatelessWidget {
+class DetailPlantScreen extends StatefulWidget {
   final Plant plant;
   const DetailPlantScreen(this.plant, {Key key}) : super(key: key);
 
   @override
+  _DetailPlantScreenState createState() => _DetailPlantScreenState();
+}
+
+class _DetailPlantScreenState extends State<DetailPlantScreen> {
+  DateTime selectedDate = DateTime.now();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(plant.nombre),
+      appBar: buildAppBar(widget.plant.nombre),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -24,13 +30,14 @@ class DetailPlantScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                   boxShadow: [
                     BoxShadow(
-                      blurRadius: 50.0,
-                      spreadRadius: 10.0,
+                      color: kPrimaryColor,
+                      blurRadius: 8.0,
+                      spreadRadius: 1.0,
                     )
                   ]),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Utility.imageFromBase64String(plant.photoName),
+                child: Utility.imageFromBase64String(widget.plant.photoName),
               ),
             ),
             Spacer(
@@ -40,7 +47,7 @@ class DetailPlantScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => _selectDate(context),
                   child: Text('Regar'),
                 ),
                 ElevatedButton(
@@ -56,5 +63,18 @@ class DetailPlantScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate, // Refer step 1
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
   }
 }
