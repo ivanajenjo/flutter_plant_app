@@ -15,3 +15,19 @@ const String columnUbicacion = 'ubicacion';
 const String columnDiasRegado = 'diasRegado';
 const String columnUltimoRegado = 'ultimoRegado';
 const String columnPhotoName = 'photoName';
+
+ThemeData buildThemeData(BuildContext context) {
+  return ThemeData(
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+      ),
+    ),
+    floatingActionButtonTheme:
+        FloatingActionButtonThemeData(backgroundColor: kPrimaryColor),
+    scaffoldBackgroundColor: kBackgroundColor,
+    primaryColor: kPrimaryColor,
+    textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+  );
+}
