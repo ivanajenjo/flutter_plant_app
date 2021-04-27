@@ -21,12 +21,15 @@ class _NewBodyState extends State<NewBody> {
         return snapshot.hasData
             ? GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
+                ),
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   Plant plant = snapshot.data[index];
                   //get your item data here ...
-                  return PlantCard('assets/images/plant.jpg', plant);
+                  return PlantCard(plant);
                 },
               )
             : Center(

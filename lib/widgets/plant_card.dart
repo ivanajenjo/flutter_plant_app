@@ -3,10 +3,11 @@ import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/screens/detail_plant_screen.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
 
+import '../constants.dart';
+
 class PlantCard extends StatelessWidget {
-  final String imagePath;
   final Plant plant;
-  const PlantCard(this.imagePath, this.plant);
+  const PlantCard(this.plant);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,16 @@ class PlantCard extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => DetailPlantScreen(plant)));
       },
-      child: Card(
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: kPrimaryColor,
+                blurRadius: 10.0,
+                spreadRadius: 0.5,
+              )
+            ]),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: Container(
