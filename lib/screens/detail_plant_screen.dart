@@ -4,6 +4,7 @@ import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/utils/database_helper.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
 import 'package:flutter_plant_app/widgets/appbar.dart';
+import 'package:intl/intl.dart';
 
 class DetailPlantScreen extends StatefulWidget {
   final Plant plant;
@@ -41,8 +42,16 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
                 child: Utility.imageFromBase64String(widget.plant.photoName),
               ),
             ),
-            Spacer(
-              flex: 2,
+            ListTile(
+              title: Text(widget.plant.ubicacion),
+              subtitle: Text('Ubicación'),
+              leading: Icon(Icons.pin_drop_outlined),
+            ),
+            buildListTileDate(),
+            ListTile(
+              title: Text('${widget.plant.diasRegado.toString()} Dias'),
+              subtitle: Text('Frecuencia de Regado'),
+              leading: Icon(Icons.water_damage_outlined),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -78,6 +87,22 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
     );
   }
 
+  ListTile buildListTileDate() {
+    if (widget.plant.ultimoRegado != null) {
+      return ListTile(
+        title: Text(_formatDate(widget.plant.ultimoRegado)),
+        subtitle: Text('Último Regado'),
+        leading: Icon(Icons.calendar_today_outlined),
+      );
+    } else {
+      return ListTile(
+        title: Text('No se ha regado'),
+        subtitle: Text('Último Regado'),
+        leading: Icon(Icons.calendar_today_outlined),
+      );
+    }
+  }
+
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
@@ -98,6 +123,11 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
   _updateRegado(Plant plant) async {
     DatabaseHelper helper = DatabaseHelper.instance;
     helper.update(plant);
+  }
+
+  String _formatDate(DateTime date) {
+    final dF = DateFormat.yMMMd();
+    return dF.format(date);
   }
 
   String _calcularProximoRegado(Plant plant) {
