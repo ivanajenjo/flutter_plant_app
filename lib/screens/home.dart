@@ -30,10 +30,10 @@ class _HomeState extends State<Home> {
           ).then(
             (value) => setState(
               () {
-                final snackBar = SnackBar(
+/*                 final snackBar = SnackBar(
                   content: Text('Nueva Planta añadida'),
                 );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                ScaffoldMessenger.of(context).showSnackBar(snackBar); */
               },
             ),
           );

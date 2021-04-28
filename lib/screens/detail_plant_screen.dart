@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plant_app/constants.dart';
 import 'package:flutter_plant_app/models/plant.dart';
+import 'package:flutter_plant_app/utils/database_helper.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
 import 'package:flutter_plant_app/widgets/appbar.dart';
 
@@ -47,12 +48,24 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () => _selectDate(context),
+                  onPressed: () {
+                    _selectDate(context);
+                  },
                   child: Text('Regar'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
-                  child: Text('00:00'),
+                  onPressed: () {
+                    widget.plant.ultimoRegado = DateTime.now();
+                    print(widget.plant.ultimoRegado);
+                    _updateRegado(widget.plant);
+                    setState(() {});
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.water_damage_outlined),
+                      Text(_calcularProximoRegado(widget.plant)),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -72,9 +85,29 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
       firstDate: DateTime(2000),
       lastDate: DateTime.now(),
     );
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
       });
+      widget.plant.ultimoRegado = selectedDate;
+      _updateRegado(widget.plant);
+      print(widget.plant);
+    }
+  }
+
+  _updateRegado(Plant plant) async {
+    DatabaseHelper helper = DatabaseHelper.instance;
+    helper.update(plant);
+  }
+
+  String _calcularProximoRegado(Plant plant) {
+    if (plant.ultimoRegado != null) {
+      final date = DateTime.now();
+      final difference = date.difference(plant.ultimoRegado).inDays;
+      final diasHastaRegado = plant.diasRegado - difference;
+      return '$diasHastaRegado dias';
+    } else {
+      return 'Sin Regar';
+    }
   }
 }

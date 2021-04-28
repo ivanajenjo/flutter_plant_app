@@ -15,7 +15,11 @@ class Plant {
     nombre = map[columnNombre];
     ubicacion = map[columnUbicacion];
     diasRegado = map[columnDiasRegado];
-    ultimoRegado = map[columnUltimoRegado];
+    if (map[columnUltimoRegado] != null) {
+      ultimoRegado = DateTime.tryParse(map[columnUltimoRegado]);
+    } else {
+      ultimoRegado = null;
+    }
     photoName = map[columnPhotoName];
   }
 
@@ -24,7 +28,7 @@ class Plant {
       'nombre': nombre,
       'ubicacion': ubicacion,
       'diasRegado': diasRegado,
-      'ultimoRegado': ultimoRegado,
+      'ultimoRegado': ultimoRegado.toString(),
       'photoName': photoName
     };
     if (id != null) {
@@ -35,6 +39,6 @@ class Plant {
 
   @override
   String toString() {
-    return 'nombre: $nombre, ubicacion: $ubicacion, diasRegado: $diasRegado, ultimoRegado: $ultimoRegado, photoName: $photoName';
+    return 'nombre: $nombre, ubicacion: $ubicacion, diasRegado: $diasRegado, ultimoRegado: $ultimoRegado';
   }
 }

@@ -41,7 +41,7 @@ class DatabaseHelper {
                 $columnNombre TEXT NOT NULL,
                 $columnUbicacion TEXT NOT NULL,
                 $columnDiasRegado INTEGER NOT NULL,
-                $columnUltimoRegado DATETIME,
+                $columnUltimoRegado TEXT,
                 $columnPhotoName TEXT
               )
               ''');
