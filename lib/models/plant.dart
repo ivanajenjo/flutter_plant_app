@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../constants.dart';
 
 class Plant {
@@ -40,5 +42,26 @@ class Plant {
   @override
   String toString() {
     return 'nombre: $nombre, ubicacion: $ubicacion, diasRegado: $diasRegado, ultimoRegado: $ultimoRegado';
+  }
+
+  int diasHastaRegar() {
+    if (ultimoRegado == null) {
+      return 10;
+    } else {
+      final date = DateTime.now();
+      int proximoRegado = date.difference(ultimoRegado).inDays;
+      int diasHastaRegado = diasRegado - proximoRegado;
+      return diasHastaRegado;
+    }
+  }
+
+  Color getColor() {
+    if (diasHastaRegar() > 1) {
+      return kPrimaryColorDark;
+    } else if (diasHastaRegar() == 1) {
+      return kOrangeColor;
+    } else {
+      return kRedColor;
+    }
   }
 }

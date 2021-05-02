@@ -28,11 +28,12 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
               flex: 1,
             ),
             Container(
+              height: MediaQuery.of(context).size.height / 2,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   boxShadow: [
                     BoxShadow(
-                      color: kPrimaryColor,
+                      color: widget.plant.getColor(),
                       blurRadius: 8.0,
                       spreadRadius: 1.0,
                     )
@@ -132,9 +133,7 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
 
   String _calcularProximoRegado(Plant plant) {
     if (plant.ultimoRegado != null) {
-      final date = DateTime.now();
-      final difference = date.difference(plant.ultimoRegado).inDays;
-      final diasHastaRegado = plant.diasRegado - difference;
+      int diasHastaRegado = plant.diasHastaRegar();
       return '$diasHastaRegado dias';
     } else {
       return 'Sin Regar';

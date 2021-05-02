@@ -3,14 +3,14 @@ import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/widgets/plant_card.dart';
 import 'package:flutter_plant_app/utils/database_helper.dart';
 
-class NewBody extends StatefulWidget {
-  NewBody({Key key}) : super(key: key);
+class MainBody extends StatefulWidget {
+  MainBody({Key key}) : super(key: key);
 
   @override
-  _NewBodyState createState() => _NewBodyState();
+  _MainBodyState createState() => _MainBodyState();
 }
 
-class _NewBodyState extends State<NewBody> {
+class _MainBodyState extends State<MainBody> {
   DatabaseHelper helper = DatabaseHelper.instance;
   @override
   Widget build(BuildContext context) {

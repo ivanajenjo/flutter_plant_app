@@ -5,31 +5,40 @@ import 'package:flutter_plant_app/utils/utility.dart';
 
 import '../constants.dart';
 
-class PlantCard extends StatelessWidget {
+class PlantCard extends StatefulWidget {
   final Plant plant;
+
   const PlantCard(this.plant);
 
+  @override
+  _PlantCardState createState() => _PlantCardState();
+}
+
+class _PlantCardState extends State<PlantCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailPlantScreen(plant)));
+        Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailPlantScreen(widget.plant)))
+            .then((value) => setState(() {}));
       },
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             boxShadow: [
               BoxShadow(
-                color: kPrimaryColorDark,
+                color: widget.plant.getColor(),
                 blurRadius: 10.0,
-                spreadRadius: 0.5,
+                spreadRadius: 1,
               )
             ]),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: Container(
-            child: Utility.imageFromBase64String(plant.photoName),
+            child: Utility.imageFromBase64String(widget.plant.photoName),
           ),
         ),
       ),

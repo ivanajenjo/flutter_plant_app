@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: NewBody(),
+      body: MainBody(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         //backgroundColor: kPrimaryColorDark,
