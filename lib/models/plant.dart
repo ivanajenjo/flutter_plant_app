@@ -57,7 +57,7 @@ class Plant {
 
   Color getColor() {
     if (diasHastaRegar() > 1) {
-      return kPrimaryColorDark;
+      return kPrimaryColor;
     } else if (diasHastaRegar() == 1) {
       return kOrangeColor;
     } else {

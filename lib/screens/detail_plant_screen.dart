@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_plant_app/constants.dart';
 import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/utils/database_helper.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
-import 'package:flutter_plant_app/widgets/appbar.dart';
 import 'package:intl/intl.dart';
 
 class DetailPlantScreen extends StatefulWidget {
@@ -19,7 +17,7 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(widget.plant.nombre),
+      appBar: buildDetailScreenAppBar(widget.plant.nombre),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -54,37 +52,60 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
               subtitle: Text('Frecuencia de Regado'),
               leading: Icon(Icons.water_damage_outlined),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    _selectDate(context);
-                  },
-                  child: Text('Regar'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    widget.plant.ultimoRegado = DateTime.now();
-                    print(widget.plant.ultimoRegado);
-                    _updateRegado(widget.plant);
-                    setState(() {});
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.water_damage_outlined),
-                      Text(_calcularProximoRegado(widget.plant)),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            buildButtonsDetailScreen(context),
             Spacer(
               flex: 2,
             )
           ],
         ),
       ),
+    );
+  }
+
+  AppBar buildDetailScreenAppBar([String nombre]) {
+    return AppBar(
+      centerTitle: true,
+      title: Text(nombre),
+      actions: [
+        IconButton(
+            icon: Icon(Icons.delete_outline),
+            onPressed: () {
+              _deletePlant(widget.plant);
+              Navigator.pop(context);
+            }),
+      ],
+    );
+  }
+
+  Row buildButtonsDetailScreen(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            _selectDate(context);
+          },
+          child: Text('Regar'),
+        ),
+        ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(widget.plant.getColor()),
+          ),
+          onPressed: () {
+            widget.plant.ultimoRegado = DateTime.now();
+            print(widget.plant.ultimoRegado);
+            _updateRegado(widget.plant);
+            setState(() {});
+          },
+          child: Row(
+            children: [
+              Icon(Icons.water_damage_outlined),
+              Text(_calcularProximoRegado(widget.plant)),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -102,6 +123,11 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
         leading: Icon(Icons.calendar_today_outlined),
       );
     }
+  }
+
+  _deletePlant(Plant plant) {
+    DatabaseHelper helper = DatabaseHelper.instance;
+    helper.deletePlant(plant.id);
   }
 
   _selectDate(BuildContext context) async {
