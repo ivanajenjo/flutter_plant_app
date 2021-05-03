@@ -29,9 +29,13 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.arrow_forward),
           onPressed: () {
-            _save(nameController.text, ubicacionController.text,
-                diasController.text, _image);
-            Navigator.pop(context);
+            if (_checkInputs()) {
+              _save(nameController.text, ubicacionController.text,
+                  diasController.text, _image);
+              Navigator.pop(context);
+            } else {
+              _informarAlUsuarioCamposIncompletos(context);
+            }
           },
         ),
         appBar: buildAppBar(),
@@ -84,7 +88,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                   Ink(
                     decoration: ShapeDecoration(
                       shape: CircleBorder(),
-                      color: kPrimaryColor,
+                      color: _getButtonColor(),
                     ),
                     child: IconButton(
                         icon: Icon(
@@ -95,7 +99,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                   ),
                   Ink(
                     decoration: ShapeDecoration(
-                      color: kPrimaryColor,
+                      color: _getButtonColor(),
                       shape: CircleBorder(),
                     ),
                     child: IconButton(
@@ -112,6 +116,32 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
         ),
       ),
     );
+  }
+
+  Color _getButtonColor() {
+    if (_image != null) {
+      return kBlueColorDark;
+    } else {
+      return kPrimaryColor;
+    }
+  }
+
+  void _informarAlUsuarioCamposIncompletos(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text('Complete todos los campos'),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  bool _checkInputs() {
+    if (nameController.text != '' &&
+        ubicacionController.text != '' &&
+        diasController.text != '' &&
+        _image != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   _imgFromCamera() async {
