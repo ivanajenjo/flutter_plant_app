@@ -85,10 +85,9 @@ class DatabaseHelper {
     return null;
   }
 
-/** 
- * La lista obtenida utilizando el metodo compareTo nos permite obtener las plantas por orden ascendente de diasHastaRegar() pero por darle coherencia de utilizacion la lista se invierte.
- * De esta forma las plantas son ordenadas cuantos menos dias hasta regar les quedan de manera que las que es más importante regar nos aparecen primero en la lista
-*/
+  ///La lista obtenida utilizando el metodo compareTo nos permite obtener las plantas por orden ascendente de diasHastaRegar() pero por darle coherencia de utilizacion la lista se invierte.
+  ///De esta forma las plantas son ordenadas cuantos menos dias hasta regar les quedan de manera que las que es más importante regar nos aparecen primero en la lista
+
   Future<List<Plant>> queryAllPlantsSorted() async {
     List<Plant> plants = await queryAllPlants();
     if (plants != null) {
