@@ -16,7 +16,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildHomeAppBar(() {
+        //Esto es una chapuza hecha para poder forzar a que la interfaz se actualice ya que no se ha podido implementar correctamente la actualizacion autmatica de la lista de plantas.
+        setState(() {});
+      }),
       body: MainBody(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

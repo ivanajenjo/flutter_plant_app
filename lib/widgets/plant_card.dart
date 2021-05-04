@@ -3,8 +3,6 @@ import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/screens/detail_plant_screen.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
 
-import '../constants.dart';
-
 class PlantCard extends StatefulWidget {
   final Plant plant;
 

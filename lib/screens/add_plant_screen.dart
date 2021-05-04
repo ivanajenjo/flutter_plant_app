@@ -172,6 +172,7 @@ _save(String nombre, String ubicacion, String dias, File image) async {
   plant.nombre = nombre;
   plant.diasRegado = int.parse(dias);
   plant.ubicacion = ubicacion;
+  plant.ultimoRegado = DateTime.now();
   plant.photoName = Utility.base64String(image.readAsBytesSync());
   DatabaseHelper helper = DatabaseHelper.instance;
   int id = await helper.insert(plant);

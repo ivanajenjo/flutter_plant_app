@@ -15,7 +15,8 @@ class _MainBodyState extends State<MainBody> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List>(
-      future: helper.queryAllPlants(),
+      future: helper
+          .queryAllPlantsSorted(), //Cambiar a queryAllPlants para obtener las plantas por orden de la base de datos.
       initialData: [],
       builder: (context, snapshot) {
         return snapshot.hasData

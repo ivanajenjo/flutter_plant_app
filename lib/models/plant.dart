@@ -44,6 +44,30 @@ class Plant {
     return 'nombre: $nombre, ubicacion: $ubicacion, diasRegado: $diasRegado, ultimoRegado: $ultimoRegado';
   }
 
+  /**
+   * El metodo compare to se utiliza para colocar las plantas en orden en la lista nos permite ordenar las plantas en funcion de cuanto tiempo nos queda hasta que estas sean regadas.
+   * Por mantener un poco la coherencia y posibles reutilizaciones de el metodo se ordena según dias hasta regar de Mayor a Menor (>). Pero realmente el orden que nos interesa es el inverso,
+   * por tanto la lista obtenida en el databaseHelper se invierte.
+ */
+  @override
+  int compareTo(Plant plant) {
+    if (this.diasHastaRegar() == null || plant.diasHastaRegar() == null) {
+      return null;
+    }
+
+    if (this.diasHastaRegar() < plant.diasHastaRegar()) {
+      return 1;
+    }
+
+    if (this.diasHastaRegar() > plant.diasHastaRegar()) {
+      return -1;
+    }
+
+    if (this.diasHastaRegar() == plant.diasHastaRegar()) {
+      return 0;
+    }
+  }
+
   int diasHastaRegar() {
     if (ultimoRegado == null) {
       return 10;
