@@ -40,9 +40,10 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  image_path: "assets/icons/plant.png"
   android: true
   ios: true
+  image_path: "assets/icons/plant.png"
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -57,7 +58,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-  #   - images/a_dot_burr.jpeg
+    - assets/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
