@@ -26,7 +26,7 @@ class _DetailPlantScreenState extends State<DetailPlantScreen> {
               flex: 1,
             ),
             Container(
-              height: MediaQuery.of(context).size.height / 2,
+              height: MediaQuery.of(context).size.height / 2.2,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   boxShadow: [
