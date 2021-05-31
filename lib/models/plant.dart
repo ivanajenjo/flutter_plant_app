@@ -66,6 +66,8 @@ class Plant {
     if (this.diasHastaRegar() == plant.diasHastaRegar()) {
       return 0;
     }
+
+    return 0;
   }
 
   int diasHastaRegar() {

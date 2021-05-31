@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_plant_app/constants.dart';
 import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/utils/database_helper.dart';
 
@@ -22,6 +23,9 @@ class _DetailPlantScreenV2State extends State<DetailPlantScreenV2> {
         child: Column(
           children: [
             ImageAndIcons(size: size, widget: widget),
+            Row(
+              children: [Text(widget.plant.nombre)],
+            )
           ],
         ),
       ),
