@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
+/// Modelo de la planta para la aplicación.
 class Plant {
   int id;
   String nombre;
