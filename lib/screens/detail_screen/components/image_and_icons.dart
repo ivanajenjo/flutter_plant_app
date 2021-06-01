@@ -44,7 +44,7 @@ class ImageAndIcons extends StatelessWidget {
                 BoxShadow(
                   blurRadius: 60,
                   offset: Offset(0, 10),
-                  color: kPrimaryColor.withOpacity(0.3),
+                  color: widget.plant.getColor().withOpacity(0.3),
                 ),
               ]),
               height: size.height * 0.7,

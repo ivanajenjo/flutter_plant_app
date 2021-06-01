@@ -4,6 +4,7 @@ import 'package:flutter_plant_app/utils/database_helper.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
 import 'package:intl/intl.dart';
 
+///Old, not used
 class DetailPlantScreen extends StatefulWidget {
   final Plant plant;
   const DetailPlantScreen(this.plant, {Key key}) : super(key: key);

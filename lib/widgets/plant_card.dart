@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plant_app/models/plant.dart';
-import 'package:flutter_plant_app/screens/detail_plant_screen.dart';
 import 'package:flutter_plant_app/screens/detail_screen/detail_plant_screen_v2.dart';
 import 'package:flutter_plant_app/utils/utility.dart';
 

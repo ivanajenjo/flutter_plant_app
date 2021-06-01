@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_plant_app/constants.dart';
 import 'package:flutter_plant_app/models/plant.dart';
 import 'package:flutter_plant_app/utils/database_helper.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import 'components/detail_text.dart';
 import 'components/image_and_icons.dart';
 
 class DetailPlantScreenV2 extends StatefulWidget {
@@ -23,13 +25,25 @@ class _DetailPlantScreenV2State extends State<DetailPlantScreenV2> {
         child: Column(
           children: [
             ImageAndIcons(size: size, widget: widget),
-            Row(
-              children: [Text(widget.plant.nombre)],
-            )
+            DetailText(widget: widget)
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding / 2),
+          child: SvgPicture.asset("assets/icons/gran-gota-de-agua.svg"),
+        ),
+        onPressed: _regarPlanta,
+      ),
     );
+  }
+
+  void _regarPlanta() {
+    widget.plant.ultimoRegado = DateTime.now();
+    print(widget.plant.ultimoRegado);
+    _updateRegado(widget.plant);
+    setState(() {});
   }
 
   AppBar buildDetailScreenAppBar([String nombre]) {
@@ -45,6 +59,11 @@ class _DetailPlantScreenV2State extends State<DetailPlantScreenV2> {
             }),
       ],
     );
+  }
+
+  _updateRegado(Plant plant) async {
+    DatabaseHelper helper = DatabaseHelper.instance;
+    helper.update(plant);
   }
 
   _deletePlant(Plant plant) {
