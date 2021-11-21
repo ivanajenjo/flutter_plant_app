@@ -49,7 +49,6 @@ class Plant {
   ///Por mantener un poco la coherencia y posibles reutilizaciones de el metodo se ordena según dias hasta regar de Mayor a Menor (>). Pero realmente el orden que nos interesa es el inverso,
   ///por tanto la lista obtenida en el databaseHelper se invierte.
 
-  @override
   int compareTo(Plant plant) {
     if (this.diasHastaRegar() == null || plant.diasHastaRegar() == null) {
       return null;

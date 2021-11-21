@@ -30,8 +30,13 @@ class ImageAndIcons extends StatelessWidget {
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
                   blurRadius: 60,
+<<<<<<< HEAD
                   offset: Offset(0, 12),
                   color: kPrimaryColor.withOpacity(0.75),
+=======
+                  offset: Offset(0, 10),
+                  color: widget.plant.getColor().withOpacity(0.3),
+>>>>>>> f6d8ab3387a590c8f42e0054858803759291041f
                 ),
               ]),
               height: size.height * 0.7,

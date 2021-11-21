@@ -35,7 +35,11 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.8.1"
+=======
+    version: "2.5.0"
+>>>>>>> f6d8ab3387a590c8f42e0054858803759291041f
   boolean_selector:
     dependency: transitive
     description:
@@ -274,7 +278,7 @@ packages:
       name: node_preamble
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "1.4.13"
   package_config:
     dependency: transitive
     description:
@@ -398,7 +402,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0"
   sqflite:
     dependency: "direct main"
     description:
@@ -454,21 +458,33 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "1.17.10"
+=======
+    version: "1.16.5"
+>>>>>>> f6d8ab3387a590c8f42e0054858803759291041f
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "0.4.2"
+=======
+    version: "0.2.19"
+>>>>>>> f6d8ab3387a590c8f42e0054858803759291041f
   test_core:
     dependency: transitive
     description:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "0.4.0"
+=======
+    version: "0.3.15"
+>>>>>>> f6d8ab3387a590c8f42e0054858803759291041f
   typed_data:
     dependency: transitive
     description:
