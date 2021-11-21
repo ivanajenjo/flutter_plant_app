@@ -22,6 +22,7 @@ const String columnPhotoName = 'photoName';
 
 ThemeData buildThemeData(BuildContext context) {
   return ThemeData(
+    appBarTheme: AppBarTheme(backgroundColor: kPrimaryColor),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),

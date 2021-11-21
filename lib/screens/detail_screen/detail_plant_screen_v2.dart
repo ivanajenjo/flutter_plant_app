@@ -24,7 +24,7 @@ class _DetailPlantScreenV2State extends State<DetailPlantScreenV2> {
           children: [
             ImageAndIcons(size: size, widget: widget),
             Row(
-              children: [Text(widget.plant.nombre)],
+              children: [Text(widget.plant.nombre), Text('Tontiña')],
             )
           ],
         ),

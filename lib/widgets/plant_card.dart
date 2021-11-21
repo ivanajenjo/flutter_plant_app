@@ -30,6 +30,7 @@ class _PlantCardState extends State<PlantCard> {
             boxShadow: [
               BoxShadow(
                 color: widget.plant.getColor(),
+                //color: Colors.,
                 blurRadius: 10.0,
                 spreadRadius: 1,
               )

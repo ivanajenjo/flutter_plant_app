@@ -26,6 +26,25 @@ class ImageAndIcons extends StatelessWidget {
         height: size.height * 0.7,
         child: Row(
           children: [
+            Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  blurRadius: 60,
+                  offset: Offset(0, 12),
+                  color: kPrimaryColor.withOpacity(0.75),
+                ),
+              ]),
+              height: size.height * 0.7,
+              width: size.width * 0.75,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(63),
+                  bottomRight: Radius.circular(63),
+                ),
+                child:
+                    imageFromBase64StringDetailScreen(widget.plant.photoName),
+              ),
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -39,25 +58,6 @@ class ImageAndIcons extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  blurRadius: 60,
-                  offset: Offset(0, 10),
-                  color: kPrimaryColor.withOpacity(0.3),
-                ),
-              ]),
-              height: size.height * 0.7,
-              width: size.width * 0.75,
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(63),
-                  bottomLeft: Radius.circular(63),
-                ),
-                child:
-                    imageFromBase64StringDetailScreen(widget.plant.photoName),
-              ),
-            )
           ],
         ),
       ),
