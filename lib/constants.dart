@@ -10,7 +10,7 @@ const kPrimaryColorDark = Color(0xFF00693e);
 const kBlueColorDark = Color(0xFF0583A6);
 const kBlueColor = Color(0xFF05B0A7);
 
-const double kDefaultPadding = 8.0;
+const double kDefaultPadding = 20.0;
 
 const String tablaPlantas = 'plantas';
 const String columnId = '_id';
@@ -22,6 +22,7 @@ const String columnPhotoName = 'photoName';
 
 ThemeData buildThemeData(BuildContext context) {
   return ThemeData(
+    appBarTheme: AppBarTheme(backgroundColor: kPrimaryColor),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
